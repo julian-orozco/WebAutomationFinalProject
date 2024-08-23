@@ -1,8 +1,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Sample Test Suite">
-    <test name="Sample Test">
+<suite name="Test suite">
+    <parameter name="url" value="https://www.saucedemo.com/"/>
+    <parameter name="loginPage-title" value="Swag Labs"/>
+    <parameter name="user" value="standard_user"/>
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="badge-1" value="1"/>
+    <parameter name="cartPage-title" value="Your Cart"/>
+    <parameter name="checkout-title" value="Checkout: Your Information"/>
+    <parameter name="firstName" value="Pepito"/>
+    <parameter name="lastName" value="Gonzalez"/>
+    <parameter name="postalCode" value="00000"/>
+    <parameter name="checkout2-title" value="Checkout: Overview"/>
+    <parameter name="checkoutComplete-title" value="Thank you for your order!"/>
+    <test name="Purchase Test">
         <classes>
-            <class name="com.globant.tests.AppTest" />
+            <class name="com.globant.tests.PurchaseProductTest" />
         </classes>
     </test>
 </suite>
