@@ -5,6 +5,7 @@
     <parameter name="user" value="standard_user"/>
     <parameter name="password" value="secret_sauce"/>
     <parameter name="badge-1" value="1"/>
+    <parameter name="badge-3" value="3"/>
     <parameter name="cartPage-title" value="Your Cart"/>
     <parameter name="checkout-title" value="Checkout: Your Information"/>
     <parameter name="firstName" value="Pepito"/>
@@ -12,9 +13,14 @@
     <parameter name="postalCode" value="00000"/>
     <parameter name="checkout2-title" value="Checkout: Overview"/>
     <parameter name="checkoutComplete-title" value="Thank you for your order!"/>
-    <test name="Purchase Test">
+    <test name="PurchaseTest">
         <classes>
             <class name="com.globant.tests.PurchaseProductTest" />
+        </classes>
+    </test>
+    <test name="RemoveElementsTest">
+        <classes>
+            <class name="com.globant.tests.RemoveElementsTest" />
         </classes>
     </test>
 </suite>

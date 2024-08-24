@@ -7,20 +7,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 
 public class BaseTest {
 
     protected WebDriver driver;
 
-    @Parameters({"url"})
     @BeforeTest
-    public void before(String url) {
+    public void before() {
         WebDriverManager.chromedriver().setup(); // Automatically manage the ChromeDriver version
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
-        driver.get(url);
+        driver.get("https://www.saucedemo.com/");
     }
 
     @AfterTest
