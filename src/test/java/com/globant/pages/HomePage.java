@@ -22,6 +22,12 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[@class=\"shopping_cart_badge\"]")
     private WebElement shoopingCartBadge;
 
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement burgerMenuBtn;
+
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logoutBtn;
+
     public void clickBackPackBtn() {
         this.isElementDisplayed(this.backPackAddToCartBtn);
         this.backPackAddToCartBtn.click();
@@ -44,8 +50,19 @@ public class HomePage extends BasePage {
     }
 
     public String getShoppingCartBadge() {
-        this.isElementDisplayed(shoopingCartBadge);
+        this.isElementDisplayed(this.shoopingCartBadge);
         return this.shoopingCartBadge.getText();
+    }
+
+    public void clickBurgerMenuBtn(){
+        this.isElementDisplayed(this.burgerMenuBtn);
+        this.burgerMenuBtn.click();
+    }
+
+    public LoginPage clicklogoutBtn(){
+        this.isElementDisplayed(this.logoutBtn);
+        this.logoutBtn.click();
+        return new LoginPage(this.driver);
     }
 
     public HomePage(WebDriver driver) {
