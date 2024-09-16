@@ -21,11 +21,18 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
 
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
       - name: Build with Maven
-        run: mvn clean
+        run: mvn clean install -DskipTests
 
       - name: Run tests
-        run: mvn -DbrowserName=${{ inputs.browserName || 'CHROME' }} verify
+        env:
+          MAVEN_OPTS: '-Dwebdriver.chrome.driver=/usr/bin/chromedriver'
+        run: mvn -DbrowserName=${{ github.event.inputs.browserName || 'CHROME' }} -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dchrome.options.args="--headless,--no-sandbox,--disable-dev-shm-usage" verify
 
       - name: Get Allure history
         uses: actions/checkout@v3
@@ -40,7 +47,7 @@ jobs:
         if: always()
         id: allure-report
         with:
-          allure_results: ${{ vars.ALLURE_RESULTS_PATH }}
+          allure_results: ${{ github.workspace }}/allure-results
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
@@ -50,6 +57,6 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: gh-pages
-          build_dir: allure-history
+          build_dir: allure-report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
