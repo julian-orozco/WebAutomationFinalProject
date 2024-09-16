@@ -16,9 +16,16 @@ public class BaseTest {
     @Parameters({"url"})
     @BeforeTest
     public void before(String url) {
-        WebDriverManager.chromedriver().setup(); // Automatically manage the ChromeDriver version
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+
+        // Añadir las opciones necesarias para entorno CI
         options.addArguments("start-maximized");
+        options.addArguments("--headless"); // Ejecutar Chrome en modo headless
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-debugging-port=9222");
+
         driver = new ChromeDriver(options);
         driver.get(url);
     }
