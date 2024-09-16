@@ -53,4 +53,3 @@ jobs:
           build_dir: allure-report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
